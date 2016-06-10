@@ -1,15 +1,13 @@
-package com.example.faruk.learningcontentproviders;
+package com.example.faruk.learningcontentproviders.ContentProviders;
 
 import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.database.CharArrayBuffer;
-import android.database.ContentObserver;
 import android.database.Cursor;
-import android.database.DataSetObserver;
-import android.database.MatrixCursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.Bundle;
+
+import com.example.faruk.learningcontentproviders.Database.DatabaseHelper;
+import com.example.faruk.learningcontentproviders.Database.MusicContract;
 
 public class MusicContentProvider extends ContentProvider {
     public MusicContentProvider() {
@@ -41,11 +39,18 @@ public class MusicContentProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection,
-                        String[] selectionArgs, String sortOrder) {
+    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        /*
         MatrixCursor cursor = new MatrixCursor(new String[] { "Autor", "Pjesma" });
         cursor.addRow(new String[] { "Bon Jovi", "It's my life" });
         cursor.addRow(new String[] { "Eminem", "Rap God" });
+        */
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        Cursor cursor = db.query(MusicContract.MusicEntry.TABLE_NAME,
+                new String[] { MusicContract.MusicEntry.COLUMN_NAME_AUTOR, MusicContract.MusicEntry.COLUMN_NAME_PJESMA },
+                null, null, null, null, null);
 
         return cursor;
     }

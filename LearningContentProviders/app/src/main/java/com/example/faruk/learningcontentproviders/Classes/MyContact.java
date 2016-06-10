@@ -1,4 +1,4 @@
-package com.example.faruk.learningcontentproviders;
+package com.example.faruk.learningcontentproviders.Classes;
 
 /**
  * Created by Faruk on 07/06/16.

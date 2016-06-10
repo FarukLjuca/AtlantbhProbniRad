@@ -1,4 +1,4 @@
-package com.example.faruk.learningcontentproviders;
+package com.example.faruk.learningcontentproviders.Adapeters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.example.faruk.learningcontentproviders.Classes.MyMessage;
+import com.example.faruk.learningcontentproviders.R;
+
 import java.util.List;
 
 /**

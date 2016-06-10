@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getAllSmsFromProvider();
-    }
+        // Get data from Content Provider and show it in Toast
 
-    public void getAllSmsFromProvider() {
         List<Song> list = new ArrayList<>();
         ContentResolver cr = getContentResolver();
 
@@ -31,24 +29,26 @@ public class MainActivity extends AppCompatActivity {
                 new String[] { "Autor", "Pjesma" }, // Select body text
                 null,
                 null,
-                null); // Default sort order
+                null);
 
-        int t = c.getCount();
+        if (c != null) {
+            int t = c.getCount();
 
-        if (c.moveToFirst()) {
-            for (int i = 0; i < t; i++) {
-                list.add(new Song(c.getString(0), c.getString(1)));
-                c.moveToNext();
+            if (c.moveToFirst()) {
+                for (int i = 0; i < t; i++) {
+                    list.add(new Song(c.getString(0), c.getString(1)));
+                    c.moveToNext();
+                }
+            } else {
+                Toast.makeText(MainActivity.this, "There was a problem with Content Provider", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            throw new RuntimeException("You have no SMS in Inbox");
-        }
-        c.close();
+            c.close();
 
-        String str = "";
-        for (Song s : list) {
-            str += s.getSinger() + " - " + s.getTitle() + "\n";
+            String str = "";
+            for (Song s : list) {
+                str += s.getSinger() + " - " + s.getTitle() + "\n";
+            }
+            Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
     }
 }

@@ -2,4 +2,7 @@
     <string name="app_name">LearningBroadcastReceivers</string>
     <string name="send_broadcast">Send broadcast</string>
     <string name="take_photo">Take Photo</string>
+    <string name="allow_notifications">Allow notifications</string>
+    <string name="pref">com.example.faruk.learningbroadcastreceiver.NOTIFICATION</string>
+    <string name="what_are_preferences">What are preferences?</string>
 </resources>

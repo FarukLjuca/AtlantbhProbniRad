@@ -11,16 +11,8 @@ public class Song {
         return singer;
     }
 
-    public void setSinger(String singer) {
-        this.singer = singer;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public Song(String singer, String title) {

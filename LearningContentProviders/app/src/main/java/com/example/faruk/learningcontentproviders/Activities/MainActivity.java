@@ -1,4 +1,4 @@
-package com.example.faruk.learningcontentproviders;
+package com.example.faruk.learningcontentproviders.Activities;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -12,6 +12,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.example.faruk.learningcontentproviders.Adapeters.CustomAdapter;
+import com.example.faruk.learningcontentproviders.Classes.MyContact;
+import com.example.faruk.learningcontentproviders.Classes.MyMessage;
+import com.example.faruk.learningcontentproviders.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +38,18 @@ public class MainActivity extends AppCompatActivity {
         if (mainList != null) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED ||
                     ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.READ_SMS, Manifest.permission.READ_CONTACTS},
-                            0);
-            }
-            else {
+                // Permissions are not available and we have to request them
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_SMS, Manifest.permission.READ_CONTACTS},
+                        0);
+            } else {
+                // Permissions are available and we can proceed with work
                 getContent();
             }
         }
     }
 
+    // Method that is called when permissions are granted
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -65,15 +73,16 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver cr = getContentResolver();
 
         Cursor c = cr.query(Telephony.Sms.Inbox.CONTENT_URI, // Official CONTENT_URI from docs
-                new String[] { Telephony.Sms.Inbox.PERSON, Telephony.Sms.Inbox.BODY }, // Select body text
+                new String[]{Telephony.Sms.Inbox.PERSON, Telephony.Sms.Inbox.BODY}, // Select body text
                 null,
                 null,
                 Telephony.Sms.Inbox.DEFAULT_SORT_ORDER); // Default sort order
 
         int totalSMS = c.getCount();
 
+        // Now we need Contacts in order to assign id's to Person names
         Cursor c1 = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                new String[] { ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME },
+                new String[]{ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME},
                 null,
                 null,
                 null);
@@ -86,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 c1.moveToNext();
             }
         } else {
-            throw new RuntimeException("You have no contacts");
+            Toast.makeText(MainActivity.this, "You have no contacts", Toast.LENGTH_SHORT).show();
         }
         c1.close();
 
@@ -102,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 c.moveToNext();
             }
         } else {
-            throw new RuntimeException("You have no SMS in Inbox");
+            Toast.makeText(MainActivity.this, "You have no messages.", Toast.LENGTH_SHORT).show();
         }
         c.close();
 
