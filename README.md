@@ -8,4 +8,4 @@ U projektu LearningBroadcastReceivers su slani vlasitit broadcastovi, primljeni 
 
 Fajl index.php je GUI za push notifikacije, kao i servis za registraciju uredjaja na supskripciju za notifikacije.
 
-
+Link for notifications web console is available at https://atlantbhprobnirad.herokuapp.com
