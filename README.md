@@ -10,4 +10,4 @@ U projektu LearningStartActivityForResult je naucena funkcija startActivityForRe
 
 Fajl index.php je GUI za push notifikacije, kao i servis za registraciju uredjaja na supskripciju za notifikacije.
 
-
+Link for notifications web console is available at https://atlantbhprobnirad.herokuapp.com
