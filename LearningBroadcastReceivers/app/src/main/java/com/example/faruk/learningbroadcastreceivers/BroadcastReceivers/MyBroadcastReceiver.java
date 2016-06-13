@@ -32,6 +32,11 @@ import java.util.concurrent.ExecutionException;
  * Created by Faruk on 08/06/16.
  */
 public class MyBroadcastReceiver extends BroadcastReceiver {
+    /**
+     * Method that is called when new broadcast is received by broadcast receiver
+     * @param context Context that is used to create notifications
+     * @param intent Intent that method was called with
+     */
     @Override
     public void onReceive(final Context context, Intent intent) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

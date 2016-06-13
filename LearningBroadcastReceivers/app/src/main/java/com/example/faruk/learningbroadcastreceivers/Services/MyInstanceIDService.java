@@ -15,6 +15,9 @@ import java.io.IOException;
  * Created by Faruk on 09/06/16.
  */
 public class MyInstanceIDService extends InstanceIDListenerService {
+    /**
+     * Method that is called whent token is refreshed
+     */
     @Override
     public void onTokenRefresh() {
         // Fetch updated Instance ID token and notify our app's server of any changes (if applicable).
