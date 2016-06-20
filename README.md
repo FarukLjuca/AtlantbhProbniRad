@@ -8,9 +8,8 @@ U projektu LearningBroadcastReceivers su slani vlasitit broadcastovi, primljeni 
 
 U projektu LearningStartActivityForResult je naucena funkcija startActivityForResult() i pisanje javadoc dokumentacije.
 
-<<<<<<< HEAD
 Fajl index.php je GUI za push notifikacije, kao i servis za registraciju uredjaja na supskripciju za notifikacije.
 
-=======
->>>>>>> 8332adf2b10ce07668a4d22f8fe3cfb1f8af6ee6
 Link for notifications web console is available at https://atlantbhprobnirad.herokuapp.com
+
+Fajl AtlantChat je projekat koji nastoji imitirati Messanger aplikaciju na Androidu i njene funkcionalnosti.
