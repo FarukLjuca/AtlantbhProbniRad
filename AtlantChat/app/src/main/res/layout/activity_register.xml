@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context="com.atlantbh.atlantchat.activities.RegisterActivity">
+
+    <TextView
+        android:id="@+id/tvRegisterTitle"
+        android:text="@string/register"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etRegisterEmail"
+        android:inputType="textEmailAddress"
+        android:hint="@string/enter_email"
+        android:layout_below="@id/tvRegisterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etRegisterPassword"
+        android:layout_below="@id/etRegisterEmail"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btRegisterRegister"
+        android:onClick="register"
+        android:text="@string/register"
+        android:layout_below="@id/etRegisterPassword"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

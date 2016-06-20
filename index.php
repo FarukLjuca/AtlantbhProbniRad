@@ -1,3 +1,94 @@
+<?php
+
+// if submit is sent, we need to downstream custom message from site and show site again in order to wrie message that data has been sent
+if (isset($_POST['submit'])) {
+    ?>
+    <!doctype html>
+<html>
+    <head>
+        <title>by Faruk</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <style>
+            .form-control {
+                margin: 10px 0;
+                width: 40%;
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" style="margin-top: 100px; text-align: center;">
+            <h1>Send notifications</h1>
+            <form method="post">
+                <input type="text" placeholder="Enter title" name="title" class="form-control" /><br>
+                <input type="text" placeholder="Enter message" name="message" class="form-control" /><br>
+                <input type="text" placeholder="Enter image url" name="image" class="form-control" /><br><br><br>
+                <input type="submit" value="Send notification" name="submit" class="btn btn-primary" />
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    </body>
+</html>
+<?php
+
+    $data = array('message' => $_POST['message'], 'title' => $_POST['title'], 'image' => $_POST['image']);
+
+    $db = getDatabase();
+    $ret = pg_query($db, "select * from token;");
+    if(!$ret){
+        echo pg_last_error($db);
+        exit;
+    }
+    $ids = pg_fetch_array($ret, 0, PGSQL_NUM);
+    pg_close($db);
+
+    sendPushNotification($data, $ids);
+}
+// When we receive token, it means that device wants to register for downstream of messages
+else if (isset($_GET['token'])) {
+    $token = $_GET['token'];
+    getJson("DO \$do$ BEGIN IF NOT EXISTS (SELECT 1 FROM token where token = '" . $token . "') THEN INSERT INTO token values('$token'); END IF; END \$do$");
+}
+// When we recieve message and author id, it means that device sent message, we need to downstream it to clients
+else if (isset($_POST['message']) && isset($_POST['userId'])) {
+    $data = array('message' => $_POST['message'], 'userId' => $_POST['userId']);
+
+    $db = getDatabase();
+    $ret = pg_query($db, "select * from token;");
+    if(!$ret){
+        echo pg_last_error($db);
+        exit;
+    }
+    $ids = pg_fetch_array($ret, 0, PGSQL_NUM);
+    pg_close($db);
+
+    sendPushNotification($data, $ids);
+}
+// Get user data
+else if (isset($_GET['userId'])) {
+    $id = $_GET['userId'];
+    echo getJson("SELECT * FROM korisnik where id = $id");
+}
+// Register
+else if (isset($_POST['email']) && isset($_POST['password'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    echo getJson("INSERT INTO korisnik values (default, '$email', '$password', null) returning id");
+}
+// Login
+else if (isset($_GET['email']) && isset($_GET['password'])) {
+    $email = $_GET['email'];
+    $password = $_GET['password'];
+
+    header('Content-Type: application/json');
+    print_r(getJson("SELECT COUNT(*) from korisnik where email = '$email' and password = '$password'"));
+}
+// If it is not api call, we need to show full message
+else {
+?>
 <!doctype html>
 <html>
     <head>
@@ -26,33 +117,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
 </html>
-
-
 <?php
-
-if (isset($_POST['submit'])) {
-    $data = array('message' => $_POST['message'], 'title' => $_POST['title'], 'image' => $_POST['image']);
-    //$ids = array('eaKV1ACX980:APA91bEJD8GgbWRtnDXE84DZLOP2LfiMjavsiNETpLD_FNroYkI7PXFI8jn50AGdFT6w6HYHlhU05WEIuA7nkIzjdYUOLHlpUjxoB_Dur4AnVBRVqdZieBHvqokyBv9sOEe095ia1RYw');
-
-    $db = getDatabase();
-    $ret = pg_query($db, "select * from token;");
-    if(!$ret){
-        echo pg_last_error($db);
-        exit;
-    }
-    $ids = pg_fetch_array($ret, 0, PGSQL_NUM);
-    pg_close($db);
-
-    sendPushNotification($data, $ids);
-}
-else if (isset($_GET['token'])) {
-    $token = $_GET['token'];
-    getJson("DO \$do$ BEGIN IF NOT EXISTS (SELECT 1 FROM token where token = '" . $token . "') THEN INSERT INTO token values('$token'); END IF; END \$do$");
 }
 
 function sendPushNotification($data, $ids)
 {
-    $apiKey = 'AIzaSyAAnqnqumdR85InP8s9DaXpdOPHs-Pn3z8';
+    $apiKey = 'AIzaSyC3mvvLnGdm0KElCOpBXcTL5rLrhGCTTrc';
 
     $post = array(
                     'registration_ids'  => $ids,

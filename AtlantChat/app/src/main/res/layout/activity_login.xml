@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".activities.LoginActivity">
+
+    <TextView
+        android:id="@+id/tvLoginTitle"
+        android:text="@string/login"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etLoginEmail"
+        android:hint="@string/enter_email"
+        android:layout_below="@id/tvLoginTitle"
+        android:text="echo.faruk@gmail.com"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etLoginPassword"
+        android:hint="@string/enter_password"
+        android:layout_marginBottom="20dp"
+        android:text="tajna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etLoginEmail"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btLoginLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etLoginPassword"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:onClick="login"
+        android:text="@string/login" />
+
+    <TextView
+        android:id="@+id/tvNoAccount"
+        android:layout_below="@id/btLoginLogin"
+        android:text="@string/don_t_have_an_account"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btLoginRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvNoAccount"
+        android:onClick="register"
+        android:text="@string/register" />
+</RelativeLayout>
