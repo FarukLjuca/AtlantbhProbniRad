@@ -5,4 +5,9 @@
     <string name="enter_email">Enter email</string>
     <string name="enter_password">Enter password</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="enter_name">Enter name</string>
+    <string name="write_a_message">Write a message...</string>
+    <string name="profile">Profile</string>
+    <string name="profile_details">Profile details</string>
+    <string name="change_image">Change image</string>
 </resources>

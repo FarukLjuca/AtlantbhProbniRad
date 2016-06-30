@@ -1,16 +1,18 @@
 package com.atlantbh.atlantchat.api;
 
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
+import com.atlantbh.atlantchat.classes.helpers.SuccessResponse;
+
+import retrofit.Call;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
+import retrofit.http.POST;
+
 
 /**
  * Created by Faruk on 20/06/16.
  */
 public interface MessageApi {
     @FormUrlEncoded
-    @POST("index.php")
-    Call<Void> sendMessage (@Field("message") String message, @Field("userId") long userId);
+    @POST("api.php?action=message_send")
+    Call<SuccessResponse> sendMessage (@Field("message") String message, @Field("userId") long userId);
 }

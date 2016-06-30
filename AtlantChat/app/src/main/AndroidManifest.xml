@@ -4,8 +4,16 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- This permission is used to draw over other windows in order to display chat heads -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <application
+        android:name=".AtlantChatApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +33,11 @@
             android:exported="false" />
 
         <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.ChatActivity" />
+        <activity android:name=".activities.ChatActivity">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </activity>
 
         <receiver
             android:name=".receivers.MessageReceiver"
@@ -35,6 +47,17 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name=".services.UsersSyncService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.ChatHeadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>

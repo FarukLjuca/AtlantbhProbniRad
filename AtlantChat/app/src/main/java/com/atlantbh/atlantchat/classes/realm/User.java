@@ -1,16 +1,20 @@
 package com.atlantbh.atlantchat.classes.realm;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
 
 /**
  * Created by Faruk on 20/06/16.
  */
+@RealmClass
 public class User extends RealmObject{
+    @PrimaryKey
     private long id;
     private String name;
     private String email;
     private String password;
-    private String imageUrl;
+    private String image;
 
     public long getId() {
         return id;
@@ -44,21 +48,21 @@ public class User extends RealmObject{
         this.password = password;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public User () {}
 
-    public User(long id, String name, String email, String password, String imageUrl) {
+    public User(long id, String name, String email, String password, String image) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.imageUrl = imageUrl;
+        this.image = image;
     }
 }

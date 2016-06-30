@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chatRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.atlantbh.atlantchat.activities.ChatActivity">
 
     <RelativeLayout
@@ -13,35 +13,49 @@
         android:layout_width="10dp"
         android:layout_height="10dp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
-
     <RelativeLayout
-        android:layout_gravity="bottom"
+        android:id="@+id/rlMessage"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/ivChatSend"
             android:onClick="sendMessage"
-            android:src="@android:drawable/ic_menu_send"
+            android:src="@drawable/ic_send_black_24dp"
             android:layout_alignParentRight="true"
-            android:tint="@color/colorAccent"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:tint="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/etChatMessage"
-            android:inputType="textCapSentences"
+            android:inputType="textCapSentences|textNoSuggestions"
+            android:hint="@string/write_a_message"
+            android:background="@color/transparent"
+            android:textSize="16sp"
+            android:padding="15dp"
             android:layout_toLeftOf="@id/ivChatSend"
             android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-</FrameLayout>
+
+    <ListView
+        android:id="@+id/lvChat"
+        android:layout_above="@id/rlMessage"
+        android:layout_alignParentTop="true"
+        android:divider="#00000000"
+        android:dividerHeight="0dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:background="@color/gray"
+        android:layout_below="@id/lvChat"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+</RelativeLayout>

@@ -1,15 +1,19 @@
 package com.atlantbh.atlantchat.api;
 
-import com.atlantbh.atlantchat.classes.helpers.LoginResponse;
+import com.atlantbh.atlantchat.classes.helpers.SuccessResponse;
+import com.atlantbh.atlantchat.classes.helpers.SuccessResponseInteger;
 
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit.Call;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
+import retrofit.http.POST;
+
 
 /**
  * Created by Faruk on 20/06/16.
  */
 public interface TokenApi {
-    @GET("index.php")
-    Call<Void> sendToken(@Query("token") String token);
+    @FormUrlEncoded
+    @POST("api.php?action=device_register")
+    Call<SuccessResponse> registerDevice(@Field("token") String token);
 }

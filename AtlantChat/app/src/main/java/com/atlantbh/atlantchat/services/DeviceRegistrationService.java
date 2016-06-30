@@ -2,19 +2,24 @@ package com.atlantbh.atlantchat.services;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.atlantbh.atlantchat.R;
 import com.atlantbh.atlantchat.api.TokenApi;
+import com.atlantbh.atlantchat.classes.helpers.SuccessResponse;
+import com.atlantbh.atlantchat.classes.helpers.SuccessResponseInteger;
 import com.atlantbh.atlantchat.utils.AppUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
+
 
 public class DeviceRegistrationService extends IntentService {
 
@@ -30,20 +35,27 @@ public class DeviceRegistrationService extends IntentService {
             String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(AppUtil.BASE_URL)
-                    .build();
-
+            Retrofit retrofit = AppUtil.getRetrofit();
             TokenApi tokenApi = retrofit.create(TokenApi.class);
-            Call<Void> call = tokenApi.sendToken(token);
-            call.enqueue(new Callback<Void>() {
+            Call<SuccessResponse> call = tokenApi.registerDevice(token);
+            call.enqueue(new Callback<SuccessResponse>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {}
+                public void onResponse(Response<SuccessResponse> response, Retrofit retrofit) {
+                    if (response.body() != null) {
+                        SuccessResponse successResponse = response.body();
+                        if (successResponse.isSuccess()) {
+                            Log.i(AppUtil.LOG_NAME, "Device successfully registered with token");
+                        } else {
+                            Toast.makeText(getApplicationContext(), successResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Throwable t) {
                     t.printStackTrace();
                 }
+
             });
 
         } catch (IOException e) {

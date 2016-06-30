@@ -16,10 +16,18 @@
         android:layout_height="wrap_content" />
 
     <EditText
+        android:id="@+id/etRegisterName"
+        android:inputType="textCapWords"
+        android:hint="@string/enter_name"
+        android:layout_below="@id/tvRegisterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
         android:id="@+id/etRegisterEmail"
         android:inputType="textEmailAddress"
         android:hint="@string/enter_email"
-        android:layout_below="@id/tvRegisterTitle"
+        android:layout_below="@id/etRegisterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -31,12 +39,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivRegisterImage"
+        android:src="@drawable/default_profile"
+        android:layout_below="@id/etRegisterPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/btRegisterChangeImage"
+        android:text="@string/change_image"
+        android:layout_centerHorizontal="true"
+        android:onClick="changeImage"
+        android:layout_below="@id/ivRegisterImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
         android:id="@+id/btRegisterRegister"
         android:onClick="register"
         android:text="@string/register"
-        android:layout_below="@id/etRegisterPassword"
+        android:layout_below="@id/btRegisterChangeImage"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </RelativeLayout>
