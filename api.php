@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
 		    	}
 		    }
 
-		    $ret = pg_query($db, "INSERT into message values (default, " . $message . ", " . $userId . ", 1,{" . $users . "}, {}, {}");
+		    $ret = pg_query($db, "INSERT into message values (default, " . $message . ", " . $userId . ", 1, {" . $users . "}, {}, {}");
 		    if(!$ret){
 		        echo pg_last_error($db);
 		        exit;
