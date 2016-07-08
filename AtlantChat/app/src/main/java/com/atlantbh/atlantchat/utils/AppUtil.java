@@ -1,6 +1,7 @@
 package com.atlantbh.atlantchat.utils;
 
 import android.content.Context;
+import android.graphics.Typeface;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
@@ -8,6 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+
+import java.util.HashMap;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -25,6 +28,9 @@ public class AppUtil {
     public static final String BASE_URL = "https://atlantbhprobnirad.herokuapp.com/";
     public static final String BASE_IMGUR_URL = "https://api.imgur.com/3/";
     public static final String LOG_NAME = "AtlantChat";
+    public static final String API_ACTION_ACTION = "action";
+    public static final String API_ACTION_MESSAGE = "message";
+    public static final String API_ACTION_SEEN = "seen";
 
     /**
      * Utility method that returns instance of retrofit
@@ -109,5 +115,25 @@ public class AppUtil {
 
     public static float getScale() {
         return scale;
+    }
+
+
+    public static int TYPEFACE_ROBOTO_REGULAR = 0;
+    public static int TYPEFACE_ROBOTO_MEDIUM = 1;
+    public static int TYPEFACE_ROBOTO_BOLD = 2;
+    public static int TYPEFACE_SFUITEXT_REGULAR = 3;
+
+    private static HashMap<Integer, Typeface> typefaceHashMap;
+
+    public static Typeface getTypeface(Context context, int key) {
+        if (typefaceHashMap == null) {
+            typefaceHashMap = new HashMap<>();
+            typefaceHashMap.put(TYPEFACE_ROBOTO_REGULAR, Typeface.createFromAsset(context.getAssets(), "Roboto-Regular.ttf"));
+            typefaceHashMap.put(TYPEFACE_ROBOTO_MEDIUM, Typeface.createFromAsset(context.getAssets(), "Roboto-Medium.ttf"));
+            typefaceHashMap.put(TYPEFACE_ROBOTO_BOLD, Typeface.createFromAsset(context.getAssets(), "Roboto-Bold.ttf"));
+            typefaceHashMap.put(TYPEFACE_SFUITEXT_REGULAR, Typeface.createFromAsset(context.getAssets(), "SFUIText-Regular.ttf"));
+        }
+
+        return typefaceHashMap.get(key);
     }
 }

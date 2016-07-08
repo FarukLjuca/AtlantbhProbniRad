@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundGray"
+    tools:context="com.atlantbh.atlantchat.activities.LoginRegisterActivity">
+
+    <Button
+        android:id="@+id/btContinue"
+        android:onClick="continueClick"
+        android:padding="10dp"
+        android:text="@string/continueText"
+        android:textAllCaps="true"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/pbContinue"
+        android:visibility="gone"
+        android:background="@drawable/progress"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/btContinue">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/vwCenter"
+                android:layout_centerInParent="true"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
+            <LinearLayout
+                android:id="@+id/llLogo"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvLogoChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:textAllCaps="true"
+                    android:textSize="23sp"
+                    android:text="@string/atlant" />
+
+                <TextView
+                    android:id="@+id/tvLogoApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGrayLogo"
+                    android:textAllCaps="true"
+                    android:textSize="23sp"
+                    android:text="@string/chat" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvLoginTab"
+                android:onClick="loginTabClick"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/vwCenter"
+                android:layout_below="@id/llLogo"
+                android:gravity="center_horizontal"
+                android:text="@string/login"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_margin="0dp"
+                android:background="@color/colorBackgroundGray"
+                android:textColor="@color/colorGrayText"
+                android:textSize="14sp"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvRegisterTab"
+                android:onClick="registerTabClick"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/vwCenter"
+                android:layout_below="@id/llLogo"
+                android:gravity="center_horizontal"
+                android:text="@string/register"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_margin="0dp"
+                android:background="@color/colorBackgroundGray"
+                android:textColor="@color/colorBlackText"
+                android:textSize="14sp"
+                android:textAllCaps="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/llRegisterLayout"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:layout_below="@id/tvLoginTab"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etRegisterName"
+                    android:inputType="textPersonName|textCapWords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    style="@style/AppEditText" />
+
+                <EditText
+                    android:id="@+id/etRegisterEmail"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    style="@style/AppEditText" />
+
+                <EditText
+                    android:id="@+id/etRegisterPassword"
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    style="@style/AppEditText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLoginLayout"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:background="@android:color/white"
+                android:layout_below="@id/tvLoginTab"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etLoginEmail"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:text="echo.faruk@gmail.com"
+                    style="@style/AppEditText" />
+
+                <EditText
+                    android:id="@+id/etLoginPassword"
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:text="tajna"
+                    style="@style/AppEditText" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

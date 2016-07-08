@@ -18,36 +18,29 @@ if (isset($_GET['action'])) {
 			$message = $_POST['message'];
 			$userId = $_POST['userId'];
 
-			$data = array('message' => $message, 'userId' => $userId);
+			$data = array('action' => 'message', 'message' => $message, 'userId' => $userId, 'time' => date('Y-m-d H:i:s'));
 
 		    $db = getDatabase();
 		    $ret = pg_query($db, "SELECT token from token;");
-		    if(!$ret){
-		        echo pg_last_error($db);
-		        exit;
-		    }
+		    
 		    $ids = array();
 		    while($row = pg_fetch_row($ret)) {
 		    	array_push($ids, $row[0]);
 		    }
 
 		    $ret = pg_query($db, "SELECT * from korisnik");
-		    if(!$ret){
-		        echo pg_last_error($db);
-		        exit;
-		    }
+		    
 		    $users = "";
 		    while($row = pg_fetch_assoc($ret)) {
 		    	if ($users != "") {
+		    		$users .= ", " . $row['id'];
+		    	}
+		    	else {
 		    		$users .= $row['id'];
 		    	}
 		    }
 
-		    $ret = pg_query($db, "INSERT into message values (default, " . $message . ", " . $userId . ", 1, {" . $users . "}, {}, {}");
-		    if(!$ret){
-		        echo pg_last_error($db);
-		        exit;
-		    }
+		    pg_query($db, "INSERT into message values (default, '" . $message . "', " . $userId . ", 1, now())");
 
 		    pg_close($db);
 
@@ -138,6 +131,56 @@ if (isset($_GET['action'])) {
 	}
 	else if ($_GET['action'] == 'users_get') {
 		echo getListJson("SELECT id, name, email, image FROM korisnik");
+	}
+	else if ($_GET['action'] == 'user_profile') {
+		if (isset($_POST['id']) && isset($_POST['image'])) {
+    		$id = $_POST['id'];
+    		$image = $_POST['image'];
+    		$db = getDatabase();
+		    $ret = pg_query($db, "UPDATE korisnik set image = '$image' where id = $id");
+		    if (!$ret) {
+		    	echo '{"success": false, "message": "' . pg_last_error($db) . '"}';
+		    }
+		    else {
+			    echo '{"success": true}';
+			}
+    	}
+		else {
+			echo '{"success": false, "message": "Wrong variables for action suplied"}';
+		}
+	}
+	else if ($_GET['action'] == 'chat_seen') {
+		if (isset($_POST['chatId']) && isset($_POST['userId'])) {
+			$userId = $_POST['userId'];
+			$chatId = $_POST['chatId'];
+
+			$data = array('action' => 'seen', 'userId' => $userId, 'chatId' => $chatId);
+			$ids = array();
+
+			$db = getDatabase();
+			$result = pg_query($db, "SELECT token from token;");
+		    while($row = pg_fetch_row($ret)) {
+		    	array_push($ids, $row[0]);
+		    }
+
+		    $resultArray = json_decode(sendPushNotification($data, $ids), true);
+
+		    $success = $resultArray['success'];
+		    $fail = $resultArray['failure'];
+
+echo "WTF";
+		    print_r($resultArray);
+
+		    if ($success >= 1) {
+		    	echo '{"success": true, "message": "Success: ' . $success . ',Fail: ' . $fail . '"}';
+		    }
+		    else {
+		    	echo '{"success": false, "message": "Something went wrong"}';
+		    }
+		}
+		else {
+			echo '{"success": false, "message": "Wrong variables for action suplied"}';
+		}
 	}
 	else {
 		echo '{"success": false, "message": "Suplied action doesn\'t exist"}';

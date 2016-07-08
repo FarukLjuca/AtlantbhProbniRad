@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundGray"
+    tools:context="com.atlantbh.atlantchat.activities.ProfileImageActivity">
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:paddingBottom="30dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivProfileImagePlaceholder"
+            android:src="@drawable/smiley"
+            android:onClick="changeImage"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivProfileImage"
+            android:visibility="gone"
+            android:onClick="changeImage"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvUploadTitle"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/upload_profile_image"
+            android:textColor="@color/colorBlackText"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvUploadSubtitle"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/tap_on_smiley_and_take_your_profile_photo"
+            android:textSize="16sp"
+            android:textColor="@color/colorGrayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbRegister"
+        android:visibility="gone"
+        android:background="@drawable/progress"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+    <Button
+        android:id="@+id/btRegister"
+        android:onClick="registerClick"
+        android:padding="10dp"
+        android:text="@string/register"
+        android:textAllCaps="true"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

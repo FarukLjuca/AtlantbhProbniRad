@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.atlantbh.atlantchat.R;
 import com.atlantbh.atlantchat.api.UserApi;
-import com.atlantbh.atlantchat.classes.Session;
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponseInteger;
+import com.atlantbh.atlantchat.model.Session;
+import com.atlantbh.atlantchat.model.helpers.SuccessResponseInteger;
 import com.atlantbh.atlantchat.utils.AppUtil;
 
 import butterknife.BindView;

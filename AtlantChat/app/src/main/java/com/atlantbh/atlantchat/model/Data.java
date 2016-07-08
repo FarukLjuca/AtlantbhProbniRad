@@ -1,4 +1,4 @@
-package com.atlantbh.atlantchat.classes;
+package com.atlantbh.atlantchat.model;
 
 /**
  * Created by Faruk on 28/06/16.

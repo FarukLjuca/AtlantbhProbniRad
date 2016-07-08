@@ -1,14 +1,12 @@
-package com.atlantbh.atlantchat.classes.helpers;
-
-import com.atlantbh.atlantchat.classes.realm.User;
+package com.atlantbh.atlantchat.model.helpers;
 
 /**
  * Created by Faruk on 23/06/16.
  */
-public class SuccessResponseUser {
+public class SuccessResponseInteger {
     private boolean success;
     private String message;
-    private User data;
+    private int data;
 
     public boolean isSuccess() {
         return success;
@@ -26,11 +24,11 @@ public class SuccessResponseUser {
         this.message = message;
     }
 
-    public User getData() {
+    public int getData() {
         return data;
     }
 
-    public void setData(User data) {
+    public void setData(int data) {
         this.data = data;
     }
 }

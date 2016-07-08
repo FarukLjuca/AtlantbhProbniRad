@@ -1,7 +1,7 @@
 package com.atlantbh.atlantchat.api;
 
-import com.atlantbh.atlantchat.classes.ImageImgur;
-import com.atlantbh.atlantchat.classes.ImgurResponse;
+import com.atlantbh.atlantchat.model.ImageImgur;
+import com.atlantbh.atlantchat.model.ImgurResponse;
 
 import retrofit.Call;
 import retrofit.http.Body;

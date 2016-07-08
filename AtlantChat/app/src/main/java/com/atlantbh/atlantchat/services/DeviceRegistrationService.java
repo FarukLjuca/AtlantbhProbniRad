@@ -7,8 +7,7 @@ import android.widget.Toast;
 
 import com.atlantbh.atlantchat.R;
 import com.atlantbh.atlantchat.api.TokenApi;
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponse;
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponseInteger;
+import com.atlantbh.atlantchat.model.helpers.SuccessResponse;
 import com.atlantbh.atlantchat.utils.AppUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
@@ -48,6 +47,9 @@ public class DeviceRegistrationService extends IntentService {
                         } else {
                             Toast.makeText(getApplicationContext(), successResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
+                    }
+                    else {
+                        Log.d(AppUtil.LOG_NAME, "Device registration service returned empty body");
                     }
                 }
 

@@ -47,7 +47,7 @@ dependencies {
 
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
 
-
+    compile 'joda-time:joda-time:2.9.4'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -6,8 +6,21 @@
     <string name="enter_password">Enter password</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="enter_name">Enter name</string>
-    <string name="write_a_message">Write a message...</string>
+    <string name="type_your_message">Type your message…</string>
     <string name="profile">Profile</string>
     <string name="profile_details">Profile details</string>
     <string name="change_image">Change image</string>
+
+    <string name="chat"><u>Chat</u></string>
+    <string name="app">App</string>
+    <string name="continueText">Continue</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="atlant">Atlant</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="upload_profile_image">Upload profile image</string>
+    <string name="tap_on_smiley_and_take_your_profile_photo">Tap on smiley and take your profile photo</string>
+    <string name="action_logout">Logout</string>
 </resources>

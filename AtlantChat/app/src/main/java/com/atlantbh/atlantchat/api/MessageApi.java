@@ -1,6 +1,6 @@
 package com.atlantbh.atlantchat.api;
 
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponse;
+import com.atlantbh.atlantchat.model.helpers.SuccessResponse;
 
 import retrofit.Call;
 import retrofit.http.Field;

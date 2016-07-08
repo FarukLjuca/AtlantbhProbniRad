@@ -10,7 +10,9 @@
     <!-- This permission is used to draw over other windows in order to display chat heads -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".AtlantChatApplication"
@@ -19,11 +21,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LoginActivity">
+        <activity
+            android:name=".activities.LoginRegisterActivity"
+            android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.ChatActivity">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </activity>
 
@@ -31,13 +40,6 @@
             android:name=".services.DeviceRegistrationService"
             android:enabled="true"
             android:exported="false" />
-
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.ChatActivity">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </activity>
 
         <receiver
             android:name=".receivers.MessageReceiver"
@@ -57,7 +59,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.ProfileImageActivity"></activity>
     </application>
 
 </manifest>

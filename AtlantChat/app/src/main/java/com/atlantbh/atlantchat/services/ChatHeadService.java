@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.atlantbh.atlantchat.R;
 import com.atlantbh.atlantchat.activities.ChatActivity;
+import com.atlantbh.atlantchat.activities.LoginRegisterActivity;
 import com.atlantbh.atlantchat.utils.AppUtil;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,17 +45,20 @@ public class ChatHeadService extends Service {
         super.onCreate();
     }
 
-    private void startChatHeads() {
+    private void startChatHeads(String url) {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         if (unreadMessages == 0) {
             layout = new RelativeLayout(this);
             chatHead = new CircleImageView(this);
+
+            Picasso.with(getApplicationContext()).load(url).into(chatHead);
+
             messageNumber = new TextView(this);
             layout.addView(chatHead);
             layout.addView(messageNumber);
 
-            int pixels = (int) (150 * AppUtil.getScale() + 0.5f);
+            int pixels = (int) (60 * AppUtil.getScale() + 0.5f);
 
             params = new WindowManager.LayoutParams(
                     pixels,
@@ -64,7 +69,7 @@ public class ChatHeadService extends Service {
 
             params.gravity = Gravity.TOP | Gravity.LEFT;
             params.x = 0;
-            params.y = 100;
+            params.y = 200;
 
             windowManager.addView(layout, params);
         }
@@ -73,12 +78,12 @@ public class ChatHeadService extends Service {
 
         unreadMessages ++;
 
-        chatHead.setImageResource(R.drawable.ic_account_circle_primary_100px);
+        //chatHead.setImageResource(R.drawable.ic_account_circle_primary_100px);
 
         messageNumber.setText(String.valueOf(unreadMessages));
         messageNumber.setBackground(this.getResources().getDrawable(R.drawable.accent_circle));
-        messageNumber.setPadding(10, 5, 10, 5);
-        messageNumber.setTextSize(18);
+        messageNumber.setPadding(5, 3, 5, 3);
+        messageNumber.setTextSize(16);
 
         chatHead.setOnTouchListener(new View.OnTouchListener() {
             private int initialX;
@@ -100,7 +105,7 @@ public class ChatHeadService extends Service {
                         return true;
                     case MotionEvent.ACTION_UP:
                         if (open) {
-                            Intent intent = new Intent(ChatHeadService.this, ChatActivity.class);
+                            Intent intent = new Intent(ChatHeadService.this, LoginRegisterActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
@@ -125,7 +130,7 @@ public class ChatHeadService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent.getAction().equals(ACTION_CHAT_HEADS)) {
-            startChatHeads();
+            startChatHeads(intent.getExtras().getString("url"));
         }
         return START_NOT_STICKY;
     }

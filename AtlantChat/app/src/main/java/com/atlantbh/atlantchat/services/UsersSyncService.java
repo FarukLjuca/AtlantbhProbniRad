@@ -1,15 +1,10 @@
 package com.atlantbh.atlantchat.services;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
-import android.support.v7.widget.AppCompatImageHelper;
-import android.util.Log;
 
-import com.atlantbh.atlantchat.api.UserApi;
-import com.atlantbh.atlantchat.classes.Session;
-import com.atlantbh.atlantchat.classes.realm.User;
+import com.atlantbh.atlantchat.model.Session;
+import com.atlantbh.atlantchat.model.realm.User;
 import com.atlantbh.atlantchat.utils.AppUtil;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.atlantbh.atlantchat.classes.realm;
+package com.atlantbh.atlantchat.model.realm;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

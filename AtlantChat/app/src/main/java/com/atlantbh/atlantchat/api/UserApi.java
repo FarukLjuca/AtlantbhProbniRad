@@ -1,9 +1,8 @@
 package com.atlantbh.atlantchat.api;
 
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponse;
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponseInteger;
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponseUser;
-import com.atlantbh.atlantchat.classes.realm.User;
+import com.atlantbh.atlantchat.model.helpers.SuccessResponseInteger;
+import com.atlantbh.atlantchat.model.helpers.SuccessResponseUser;
+import com.atlantbh.atlantchat.model.realm.User;
 
 import java.util.List;
 
@@ -31,4 +30,8 @@ public interface UserApi {
     @FormUrlEncoded
     @POST("api.php?action=user_get")
     Call<User> getUser(@Field("userId") long userId);
+
+    @FormUrlEncoded
+    @POST("api.php?action=user_profile")
+    Call<SuccessResponseUser> changeProfile(@Field("id") long userId, @Field("image") String imageUrl);
 }

@@ -18,10 +18,10 @@ import android.widget.Toast;
 import com.atlantbh.atlantchat.R;
 import com.atlantbh.atlantchat.api.ImgurApi;
 import com.atlantbh.atlantchat.api.UserApi;
-import com.atlantbh.atlantchat.classes.ImageImgur;
-import com.atlantbh.atlantchat.classes.ImgurResponse;
-import com.atlantbh.atlantchat.classes.Session;
-import com.atlantbh.atlantchat.classes.helpers.SuccessResponseUser;
+import com.atlantbh.atlantchat.model.ImageImgur;
+import com.atlantbh.atlantchat.model.ImgurResponse;
+import com.atlantbh.atlantchat.model.Session;
+import com.atlantbh.atlantchat.model.helpers.SuccessResponseUser;
 import com.atlantbh.atlantchat.utils.AppUtil;
 
 import java.io.ByteArrayOutputStream;

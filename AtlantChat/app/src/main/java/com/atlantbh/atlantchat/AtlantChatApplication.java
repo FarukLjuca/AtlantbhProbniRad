@@ -31,11 +31,9 @@ public class AtlantChatApplication extends Application {
 
     public static void activityResumed() {
         activityVisible = true;
-        Log.i(AppUtil.LOG_NAME, "Visible true");
     }
 
     public static void activityPaused() {
         activityVisible = false;
-        Log.i(AppUtil.LOG_NAME, "Visible false");
     }
 }

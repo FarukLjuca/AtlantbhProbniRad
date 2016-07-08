@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3D76FA</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#00BBD3</color>
+    <color name="colorPrimaryDark">#0096A6</color>
+    <color name="colorAccent">#00BBD3</color>
+
+    <color name="colorBackgroundGray">#ECEFF0</color>
+    <color name="colorGrayLogo">#48263238</color>
+    <color name="colorGrayText">#C2C2C2</color>
+    <color name="colorBlackText">#263238</color>
+    <color name="colorGrayEditTextLine">#329B9B9B</color>
+    <color name="colorGrayEditTextText">#649B9B9B</color>
+    <color name="colorGrayEditTextDate">#8021262D</color>
+    <color name="colorBlackTextMessage">#21262D</color>
+    <color name="colorGrayTime">#B4B4B4</color>
+
 
     <color name="transparent">#00000000</color>
     <color name="gray">#d3d3d3</color>
-    <color name="darkgray">#a9a9a9</color>
+    <color name="darkGray">#a9a9a9</color>
+    <color name="grayBorder">#E0E0E0</color>
 </resources>

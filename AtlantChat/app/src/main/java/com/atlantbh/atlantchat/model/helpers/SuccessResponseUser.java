@@ -1,14 +1,14 @@
-package com.atlantbh.atlantchat.classes.helpers;
+package com.atlantbh.atlantchat.model.helpers;
+
+import com.atlantbh.atlantchat.model.realm.User;
 
 /**
- * Created by Faruk on 20/06/16.
- *
- * It is generic because data can be different for every type of request
- * For user registration, it is ID, for get User details it is User object...
+ * Created by Faruk on 23/06/16.
  */
-public class SuccessResponse {
+public class SuccessResponseUser {
     private boolean success;
     private String message;
+    private User data;
 
     public boolean isSuccess() {
         return success;
@@ -24,5 +24,13 @@ public class SuccessResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public User getData() {
+        return data;
+    }
+
+    public void setData(User data) {
+        this.data = data;
     }
 }

@@ -1,6 +1,6 @@
-package com.atlantbh.atlantchat.classes;
+package com.atlantbh.atlantchat.model;
 
-import com.atlantbh.atlantchat.classes.realm.User;
+import com.atlantbh.atlantchat.model.realm.User;
 
 import java.util.ArrayList;
 import java.util.List;

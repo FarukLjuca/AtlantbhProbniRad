@@ -4,6 +4,7 @@
     android:id="@+id/chatRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackgroundGray"
     tools:context="com.atlantbh.atlantchat.activities.ChatActivity">
 
     <RelativeLayout
@@ -23,6 +24,7 @@
             android:id="@+id/ivChatSend"
             android:onClick="sendMessage"
             android:src="@drawable/ic_send_black_24dp"
+            android:background="@android:color/white"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="15dp"
@@ -33,14 +35,15 @@
         <EditText
             android:id="@+id/etChatMessage"
             android:inputType="textCapSentences|textNoSuggestions"
-            android:hint="@string/write_a_message"
-            android:background="@color/transparent"
+            android:hint="@string/type_your_message"
+            android:background="@android:color/white"
             android:textSize="16sp"
             android:padding="15dp"
             android:layout_toLeftOf="@id/ivChatSend"
             android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/AppEditText" />
     </RelativeLayout>
 
     <ListView
@@ -54,7 +57,7 @@
         android:layout_height="wrap_content" />
 
     <View
-        android:background="@color/gray"
+        android:background="@color/grayBorder"
         android:layout_below="@id/lvChat"
         android:layout_width="match_parent"
         android:layout_height="1px" />

@@ -7,12 +7,11 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
 
-
 /**
- * Created by Faruk on 20/06/16.
+ * Created by Faruk on 01/07/16.
  */
-public interface TokenApi {
+public interface ChatApi {
     @FormUrlEncoded
-    @POST("api.php?action=device_register")
-    Call<SuccessResponse> registerDevice(@Field("token") String token);
+    @POST("api.php?action=chat_seen")
+    Call<SuccessResponse> chatSeen (@Field("userId") long userId, @Field("chatId") int chatId);
 }
