@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Right Way</string>
+    <string name="camera_view">Camera View</string>
+    <string name="my_location">My location</string>
+    <string name="your_current_location">Your current location</string>
+    <string name="desired_location">Desired location</string>
+    <string name="you_need_to_select_desired_location">You need to select desired location</string>
+</resources>

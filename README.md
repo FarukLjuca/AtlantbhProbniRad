@@ -8,7 +8,8 @@ U projektu LearningBroadcastReceivers su slani vlasitit broadcastovi, primljeni 
 
 U projektu LearningStartActivityForResult je naucena funkcija startActivityForResult() i pisanje javadoc dokumentacije.
 
-Fajl index.php je GUI za push notifikacije, kao i servis za registraciju uredjaja na supskripciju za notifikacije.
+Fajl index.php je GUI za push notifikacije.
+Fajl api.php je servis za registraciju uredjaja na supskripciju za notifikacije, kao i backend Chat aplikacije sa svim njenim funkcionalnostima.
 
 Link for notifications web console is available at https://atlantbhprobnirad.herokuapp.com
 
